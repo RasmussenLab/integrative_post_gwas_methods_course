@@ -9,8 +9,8 @@ Course material and notes for the PhD course "Integrative Post-GWAS Methods: Adv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source ~/.zshrc  # reload PATH so uv is available
 uv venv
-uv pip install "git+https://github.com/arnor-sigurdsson/EIR-auto-GP.git@27928f"
 uv sync
+uv pip install "git+https://github.com/arnor-sigurdsson/EIR-auto-GP.git@27928f"
 jupyter lab
 ```
 
