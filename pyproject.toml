@@ -9,8 +9,10 @@ dependencies = [
     "gdown>=6.0.0",
     "ipywidgets>=8.1.8",
     "jupyterlab>=4.5.7",
+    "lightgbm>=4.6.0",
     "pandas>=3.0.3",
     "pymupdf>=1.27.2.3",
+    "shap>=0.52.0",
     "tqdm>=4.67.3",
     "umap-learn>=0.5.12",
 ]

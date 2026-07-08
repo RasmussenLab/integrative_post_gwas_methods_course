@@ -11,7 +11,7 @@ source ~/.zshrc  # or "source ~/.bashrc", reload PATH so uv is available
 uv venv
 uv sync
 uv pip install "git+https://github.com/arnor-sigurdsson/EIR-auto-GP.git@27928f"
-jupyter lab
+uv run jupyter lab
 ```
 
 Then open e.g. the notebooks under `./notebooks`
