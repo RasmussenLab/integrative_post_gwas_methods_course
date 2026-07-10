@@ -1,0 +1,25 @@
+output_info:
+  output_source: null
+  output_name: ehr
+  output_type: sequence
+
+output_type_info:
+        sampling_strategy_if_longer: "uniform"
+        max_length: 64
+        split_on: " "
+        min_freq: 10
+
+
+model_config:
+  embedding_dim: 64
+  model_init_config:
+    num_layers: 4
+
+sampling_config:
+  generated_sequence_length: 64
+  n_eval_inputs: 10
+
+  manual_inputs:
+    - ehr: "[VISIT_START] AGE_43"
+
+    - ehr: "[VISIT_START] AGE_65"

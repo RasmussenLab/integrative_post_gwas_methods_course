@@ -1,0 +1,18 @@
+input_info:
+  input_source: ../reference_data/eir-transformer/df_grs_test.csv
+  input_name: biomarker_inputs
+  input_type: tabular
+input_type_info:
+  input_con_columns:
+  - I21
+  - I25
+  - Lipoprotein_A
+  - Apolipoprotein_B_BIOCH
+  - I20
+  - I10
+  - Clinical_LDL_Cholesterol
+  - E11
+  - Total_Triglycerides
+  - Systolic_blood_pressure_automated_reading
+model_config:
+  model_type: tabular

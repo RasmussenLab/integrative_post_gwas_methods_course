@@ -1,0 +1,8 @@
+output_info:
+  output_source: ../reference_data/eir-transformer/df_cad_test.csv
+  output_name: cad_output
+  output_type: tabular
+
+output_type_info:
+  target_cat_columns:
+    - CAD
