@@ -8,6 +8,7 @@ from typing import Callable, Literal
 
 LAB_AGE_SLOPE = 0.5
 LAB_NOISE_SD = 3.0
+GAMMA = 1
 AGE_REF = 60
 DX_PERSIST_P = 0.9
 BIN_GRANULARITY = 2
@@ -57,9 +58,15 @@ def lab_token(
     base_pct: int,
     age: int,
 ) -> str:
-    level = (
-        base_pct + LAB_AGE_SLOPE * (age - AGE_REF) + np.random.normal(0, LAB_NOISE_SD)
-    )
+
+    slope = LAB_AGE_SLOPE * (base_pct / 100) ** GAMMA
+    delta_age = age - AGE_REF
+
+    level = slope * delta_age + base_pct
+
+    cur_noise = np.random.normal(0, LAB_NOISE_SD)
+    level += cur_noise
+
     level = int(np.clip(level, 1, 100))
     bin_upper = ((level - 1) // BIN_GRANULARITY + 1) * BIN_GRANULARITY
     return f"LAB_{trait_name}_{bin_upper}%"
@@ -193,7 +200,6 @@ def subset_sequences_by_patient(
 ) -> pd.DataFrame:
     base_ids = df_sequences["ID"].str.split("_").str[0]
     return df_sequences[base_ids.isin(patient_ids)]
-
 
 def trim_sequence(sequence: str, stop_when: Callable[[str], bool]) -> str:
     tokens = sequence.split(" ")

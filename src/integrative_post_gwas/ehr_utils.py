@@ -1,3 +1,7 @@
+from pathlib import Path
+import re
+
+import yaml
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -65,3 +69,51 @@ def plot_real_vs_generated(
     ax.legend()
     ax.grid(alpha=0.2)
     plt.show()
+
+
+def set_manual_inputs(
+    prompts: str | list[str],
+    config_path: str = "../configs/eir-transformer/output_sequence_test.yaml",
+    tabular: Optional[dict | list[dict]] = None,
+) -> None:
+    if isinstance(prompts, str):
+        prompts = [prompts]
+
+    if tabular is not None:
+        if isinstance(tabular, dict):
+            tabular = [tabular]
+        if len(tabular) != len(prompts):
+            raise ValueError(f"{len(prompts)} prompts vs {len(tabular)} tabular rows.")
+
+    config_path = Path(config_path)
+    with open(config_path) as handle:
+        config = yaml.safe_load(handle)
+
+    manual_inputs = []
+    for i, p in enumerate(prompts):
+        entry = {"ehr": p}
+        if tabular is not None:
+            entry["biomarker_inputs"] = tabular[i]
+
+        manual_inputs.append(entry)
+
+    config["sampling_config"]["manual_inputs"] = manual_inputs
+
+    with open(config_path, "w") as handle:
+        yaml.safe_dump(config, handle, sort_keys=False, default_flow_style=False)
+
+
+def load_trait_csv(path: Path) -> pd.Series:
+  df = pd.read_csv(path).set_index("ID")
+  trait = path.stem
+  prob1 = [c for c in df.columns if c.endswith("Ensemble Prob 1")]
+  if prob1:
+      s = df[prob1[0]].rename(trait)
+      s.attrs["kind"] = "binary"
+      return s
+  ensemble = [c for c in df.columns if re.fullmatch(rf"{re.escape(trait)} Ensemble", c)]
+  if not ensemble:
+      raise ValueError(f"No ensemble column found in {path.name}: {list(df.columns)}")
+  s = df[ensemble[0]].rename(trait)
+  s.attrs["kind"] = "continuous"
+  return s

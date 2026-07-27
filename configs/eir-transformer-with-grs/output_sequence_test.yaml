@@ -1,25 +1,41 @@
 output_info:
-  output_source: null
+  output_source: ../reference_data/eir-transformer/df_ehr_test_visit_start.csv
   output_name: ehr
   output_type: sequence
-
 output_type_info:
-        sampling_strategy_if_longer: "uniform"
-        max_length: 64
-        split_on: " "
-        min_freq: 10
-
-
+  sampling_strategy_if_longer: uniform
+  max_length: 64
+  split_on: ' '
+  min_freq: 10
 model_config:
   embedding_dim: 64
   model_init_config:
     num_layers: 4
-
 sampling_config:
   generated_sequence_length: 64
   n_eval_inputs: 10
-
   manual_inputs:
-    - ehr: "[VISIT_START] AGE_43"
-
-    - ehr: "[VISIT_START] AGE_65"
+  - ehr: SEX_2 [VISIT_START] AGE_60 LAB_HDL_cholesterol_94% LAB_LDL_Cholesterol_84%
+      LAB_Total_Triglycerides_24% DX_I25 [VISIT_END]
+    biomarker_inputs:
+      Cholesterol: 6.1145873
+      LDL_direct: 3.7932913
+      Glycated_haemoglobin_HbA1c: 36.74147
+      Alanine_aminotransferase: 26.33017
+      Aspartate_aminotransferase: 27.550789
+      Gamma_glutamyltransferase: 38.039497
+      Alkaline_phosphatase: 79.44806
+      Albumin_BIOCH: 45.703136
+      Total_protein: 71.72162
+      Direct_bilirubin: 3.3085146
+      Total_bilirubin: 19.51425
+      C_reactive_protein: 2.1354513
+      Urate: 301.092
+      Calcium: 2.3919413
+      Phosphate: 1.1971753
+      Creatinine_BIOCH: 75.11925
+      Cystatin_C: 0.8391408
+      Urea: 5.454428
+      IGF_1: 20.05275
+      Vitamin_D: 49.109905
+      Lipoprotein_A: 40.11286

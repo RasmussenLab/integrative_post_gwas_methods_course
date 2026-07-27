@@ -1,7 +1,5 @@
-attribution_analysis:
-  attributions_every_sample_factor: 4
-  compute_attributions: true
-  max_attributions_per_class: 512
+accelerator:
+  hardware: cpu
 basic_experiment:
   memory_dataset: true
   n_epochs: 20

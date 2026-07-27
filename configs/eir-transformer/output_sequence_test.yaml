@@ -14,6 +14,4 @@ model_config:
 sampling_config:
   generated_sequence_length: 64
   n_eval_inputs: 10
-  manual_inputs:
-  - ehr: SEX_2 [VISIT_START] AGE_58 LAB_HDL_cholesterol_88% LAB_LDL_Cholesterol_88%
-      DX_I25 [VISIT_END]
+  manual_inputs: []

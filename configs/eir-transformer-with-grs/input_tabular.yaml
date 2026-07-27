@@ -4,15 +4,26 @@ input_info:
   input_type: tabular
 input_type_info:
   input_con_columns:
-  - I21
-  - I25
+  - Cholesterol
+  - LDL_direct
+  - Glycated_haemoglobin_HbA1c
+  - Alanine_aminotransferase
+  - Aspartate_aminotransferase
+  - Gamma_glutamyltransferase
+  - Alkaline_phosphatase
+  - Albumin_BIOCH
+  - Total_protein
+  - Direct_bilirubin
+  - Total_bilirubin
+  - C_reactive_protein
+  - Urate
+  - Calcium
+  - Phosphate
+  - Creatinine_BIOCH
+  - Cystatin_C
+  - Urea
+  - IGF_1
+  - Vitamin_D
   - Lipoprotein_A
-  - Apolipoprotein_B_BIOCH
-  - I20
-  - I10
-  - Clinical_LDL_Cholesterol
-  - E11
-  - Total_Triglycerides
-  - Systolic_blood_pressure_automated_reading
 model_config:
   model_type: tabular
