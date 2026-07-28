@@ -1,5 +1,5 @@
 accelerator:
-  hardware: cpu
+  hardware: auto
 basic_experiment:
   memory_dataset: true
   n_epochs: 20

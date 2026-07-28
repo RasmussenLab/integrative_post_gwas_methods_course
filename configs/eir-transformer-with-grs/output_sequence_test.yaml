@@ -12,11 +12,11 @@ model_config:
   model_init_config:
     num_layers: 4
 sampling_config:
-  generated_sequence_length: 64
-  n_eval_inputs: 10
+  generated_sequence_length: 128
+  n_eval_inputs: 0
   manual_inputs:
-  - ehr: SEX_2 [VISIT_START] AGE_60 LAB_HDL_cholesterol_94% LAB_LDL_Cholesterol_84%
-      LAB_Total_Triglycerides_24% DX_I25 [VISIT_END]
+  - ehr: SEX_2 [VISIT_START] AGE_59 LAB_HDL_cholesterol_92% LAB_LDL_Cholesterol_88%
+      LAB_Total_Triglycerides_18% [VISIT_END]
     biomarker_inputs:
       Cholesterol: 6.1145873
       LDL_direct: 3.7932913

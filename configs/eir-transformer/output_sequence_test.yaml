@@ -1,5 +1,5 @@
 output_info:
-  output_source: null
+  output_source: ../reference_data/eir-transformer/df_ehr_test.csv
   output_name: ehr
   output_type: sequence
 output_type_info:
@@ -12,6 +12,8 @@ model_config:
   model_init_config:
     num_layers: 4
 sampling_config:
-  generated_sequence_length: 64
+  generated_sequence_length: 128
   n_eval_inputs: 10
-  manual_inputs: []
+  manual_inputs:
+  - ehr: SEX_2 [VISIT_START] AGE_59 LAB_HDL_cholesterol_92% LAB_LDL_Cholesterol_88%
+      LAB_Total_Triglycerides_18% [VISIT_END]
