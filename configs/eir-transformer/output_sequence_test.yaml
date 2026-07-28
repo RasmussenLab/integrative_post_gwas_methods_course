@@ -15,5 +15,5 @@ sampling_config:
   generated_sequence_length: 128
   n_eval_inputs: 10
   manual_inputs:
-  - ehr: SEX_2 [VISIT_START] AGE_59 LAB_HDL_cholesterol_92% LAB_LDL_Cholesterol_88%
-      LAB_Total_Triglycerides_18% [VISIT_END]
+  - ehr: SEX_2 [VISIT_START] AGE_59 LAB_HDL_cholesterol_92% LAB_LDL_Cholesterol_84%
+      LAB_Total_Triglycerides_22% DX_I25 [VISIT_END]

@@ -15,27 +15,27 @@ sampling_config:
   generated_sequence_length: 128
   n_eval_inputs: 0
   manual_inputs:
-  - ehr: SEX_2 [VISIT_START] AGE_59 LAB_HDL_cholesterol_92% LAB_LDL_Cholesterol_88%
-      LAB_Total_Triglycerides_18% [VISIT_END]
+  - ehr: SEX_2 [VISIT_START] AGE_59 LAB_HDL_cholesterol_92% LAB_LDL_Cholesterol_84%
+      LAB_Total_Triglycerides_22% DX_I25 [VISIT_END]
     biomarker_inputs:
       Cholesterol: 6.1145873
       LDL_direct: 3.7932913
       Glycated_haemoglobin_HbA1c: 36.74147
       Alanine_aminotransferase: 26.33017
-      Aspartate_aminotransferase: 27.550789
+      Aspartate_aminotransferase: 27.550787
       Gamma_glutamyltransferase: 38.039497
       Alkaline_phosphatase: 79.44806
       Albumin_BIOCH: 45.703136
       Total_protein: 71.72162
       Direct_bilirubin: 3.3085146
       Total_bilirubin: 19.51425
-      C_reactive_protein: 2.1354513
+      C_reactive_protein: 2.1354516
       Urate: 301.092
       Calcium: 2.3919413
       Phosphate: 1.1971753
       Creatinine_BIOCH: 75.11925
       Cystatin_C: 0.8391408
       Urea: 5.454428
-      IGF_1: 20.05275
+      IGF_1: 20.052748
       Vitamin_D: 49.109905
-      Lipoprotein_A: 40.11286
+      Lipoprotein_A: 40.112858
