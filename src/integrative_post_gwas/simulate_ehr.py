@@ -217,6 +217,39 @@ def trim_sequences_df(
     return df
 
 
+@dataclass
+class SplitDFs:
+    df_seq_train: pd.DataFrame
+    df_seq_val: pd.DataFrame
+    df_seq_test: pd.DataFrame
+
+
+def split_ids(df_grs_and_real: pd.DataFrame, df_sequences: pd.DataFrame) -> SplitDFs:
+    train_ids, val_ids, test_ids = split_patient_ids(
+        patient_ids=list(df_grs_and_real.index)
+    )
+
+    df_seq_train = subset_sequences_by_patient(
+        df_sequences=df_sequences, patient_ids=set(train_ids) | set(val_ids)
+    )
+    df_seq_test = subset_sequences_by_patient(
+        df_sequences=df_sequences, patient_ids=set(test_ids)
+    )
+    df_seq_val = subset_sequences_by_patient(
+        df_sequences=df_sequences, patient_ids=set(val_ids)
+    )
+
+    return SplitDFs(
+        df_seq_train=df_seq_train, df_seq_val=df_seq_val, df_seq_test=df_seq_test
+    )
+
+
+def save_validation_ids(df_seq_val: pd.DataFrame, output_folder: Path) -> None:
+    with open(output_folder / "validation_ids.txt", "w") as handle:
+        for sample_id in df_seq_val["ID"]:
+            handle.write(f"{sample_id}\n")
+
+
 def main(input_root: Path, output_folder: Path):
     con_traits = [
         "HDL_cholesterol",
@@ -246,38 +279,26 @@ def main(input_root: Path, output_folder: Path):
 
     df_sequences = build_sequences_df(df=df_joined, target_traits=target_traits)
 
-    train_ids, val_ids, test_ids = split_patient_ids(patient_ids=list(df_joined.index))
-
-    df_seq_train = subset_sequences_by_patient(
-        df_sequences=df_sequences, patient_ids=set(train_ids) | set(val_ids)
-    )
-    df_seq_test = subset_sequences_by_patient(
-        df_sequences=df_sequences, patient_ids=set(test_ids)
-    )
-    df_seq_val = subset_sequences_by_patient(
-        df_sequences=df_sequences, patient_ids=set(val_ids)
-    )
-
-    df_test_first_visit = trim_sequences_df(
-        df_sequences=df_seq_test, stop_when=lambda t: t == "[VISIT_END]"
-    )
-    df_test_visit_start = trim_sequences_df(
-        df_sequences=df_seq_test, stop_when=lambda t: t.startswith("AGE_")
-    )
+    split_dfs = split_ids(df_grs_and_real=df_joined, df_sequences=df_sequences)
 
     output_folder.mkdir(parents=True, exist_ok=True)
-    df_seq_train.to_csv(output_folder / "df_ehr.csv", index=False)
-    df_seq_test.to_csv(output_folder / "df_ehr_test.csv", index=False)
+    save_validation_ids(df_seq_val=split_dfs.df_seq_val, output_folder=output_folder)
+
+    df_test_first_visit = trim_sequences_df(
+        df_sequences=split_dfs.df_seq_test, stop_when=lambda t: t == "[VISIT_END]"
+    )
+    df_test_visit_start = trim_sequences_df(
+        df_sequences=split_dfs.df_seq_test, stop_when=lambda t: t.startswith("AGE_")
+    )
+
+    split_dfs.df_seq_train.to_csv(output_folder / "df_ehr.csv", index=False)
+    split_dfs.df_seq_test.to_csv(output_folder / "df_ehr_test.csv", index=False)
     df_test_first_visit.to_csv(
         output_folder / "df_ehr_test_first_visit.csv", index=False
     )
     df_test_visit_start.to_csv(
         output_folder / "df_ehr_test_visit_start.csv", index=False
     )
-
-    with open(output_folder / "validation_ids.txt", "w") as handle:
-        for sample_id in df_seq_val["ID"]:
-            handle.write(f"{sample_id}\n")
 
 
 if __name__ == "__main__":

@@ -63,9 +63,13 @@ def plot_real_vs_generated(
                     color=color, fontsize=8, rotation=90, va="top", ha="right",
                 )
 
+    title = f"Real vs generated trajectory: {lab}"
+    if generated_seq is None:
+        title = f"Real trajectory: {lab}"
+
     ax.set_xlabel("Age")
     ax.set_ylabel(f"{lab} (percentile bin)")
-    ax.set_title(f"Real vs generated trajectory: {lab}")
+    ax.set_title(title)
     ax.legend()
     ax.grid(alpha=0.2)
     plt.show()

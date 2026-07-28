@@ -12,6 +12,7 @@ dependencies = [
     "lightgbm>=4.6.0",
     "pandas>=3.0.3",
     "pymupdf>=1.27.2.3",
+    "ruff>=0.16.0",
     "scikit-learn>=1.5.0",
     "shap>=0.52.0",
     "tqdm>=4.67.3",
