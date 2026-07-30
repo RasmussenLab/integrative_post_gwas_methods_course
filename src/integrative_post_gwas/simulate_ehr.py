@@ -14,7 +14,6 @@ DX_PERSIST_P = 0.9
 BIN_GRANULARITY = 2
 
 
-
 @dataclass
 class Trait:
     name: str
@@ -201,6 +200,7 @@ def subset_sequences_by_patient(
     base_ids = df_sequences["ID"].str.split("_").str[0]
     return df_sequences[base_ids.isin(patient_ids)]
 
+
 def trim_sequence(sequence: str, stop_when: Callable[[str], bool]) -> str:
     tokens = sequence.split(" ")
     for i, token in enumerate(tokens):
@@ -250,22 +250,26 @@ def save_validation_ids(df_seq_val: pd.DataFrame, output_folder: Path) -> None:
             handle.write(f"{sample_id}\n")
 
 
-def main(input_root: Path, output_folder: Path):
-    con_traits = [
-        "HDL_cholesterol",
-        "LDL_Cholesterol",
-        "Total_Triglycerides",
-    ]
+def _verify_traits(target_folder: Path, target_traits: list[Trait]):
+    all_traits = {i.stem for i in target_folder.iterdir()}
 
-    cat_traits = [
-        "I10",
-        "I25",
-        "E11",
-    ]
+    for trait in target_traits:
+        trait_name = trait.name
+        if trait_name not in all_traits:
+            raise ValueError(f"Trait {trait} not found in target traits.")
+
+
+def main(
+    input_root: Path,
+    output_folder: Path,
+    con_traits: list[str],
+    cat_traits: list[str],
+):
 
     target_traits = build_traits(con_traits=con_traits, cat_traits=cat_traits)
 
     target_folder = input_root / "output/results/"
+    _verify_traits(target_folder=target_folder, target_traits=target_traits)
 
     df_preds = gather_predictions(preds_folder=target_folder, keep_list=target_traits)
     df_percentiles = convert_df_to_percentiles(df=df_preds)
