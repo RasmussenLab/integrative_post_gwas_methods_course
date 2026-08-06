@@ -1,5 +1,5 @@
 output_info:
-  output_source: ../reference_data/eir-transformer/df_ehr_test_visit_start.csv
+  output_source: ../reference_data/eir-transformer/df_ehr_test.csv
   output_name: ehr
   output_type: sequence
 output_type_info:
@@ -15,14 +15,15 @@ sampling_config:
   generated_sequence_length: 128
   n_eval_inputs: 0
   manual_inputs:
-  - ehr: SEX_2 [VISIT_START] AGE_59 LAB_HDL_cholesterol_92% LAB_LDL_Cholesterol_84%
-      LAB_Total_Triglycerides_22% DX_I25 [VISIT_END]
-    biomarker_inputs:
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: &id001
       Cholesterol: 6.1145873
       LDL_direct: 3.7932913
       Glycated_haemoglobin_HbA1c: 36.74147
       Alanine_aminotransferase: 26.33017
       Aspartate_aminotransferase: 27.550787
+      Apolipoprotein_A: 1.6436721
+      Apolipoprotein_B_BIOCH: 1.067218
       Gamma_glutamyltransferase: 38.039497
       Alkaline_phosphatase: 79.44806
       Albumin_BIOCH: 45.703136
@@ -39,3 +40,129 @@ sampling_config:
       IGF_1: 20.052748
       Vitamin_D: 49.109905
       Lipoprotein_A: 40.112858
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001
+  - ehr: SEX_2 [VISIT_START] AGE_61
+    biomarker_inputs: *id001

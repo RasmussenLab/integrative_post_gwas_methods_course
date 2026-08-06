@@ -6,12 +6,17 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from typing import Callable, Literal
 
-LAB_AGE_SLOPE = 0.5
-LAB_NOISE_SD = 3.0
-GAMMA = 1
 AGE_REF = 60
+LAB_AGE_SLOPE = 1.5
+LAB_NOISE_SD = 3.0
+GAMMA = 1.0
+
+DX_SCALING_FACTOR = 0.2
 DX_PERSIST_P = 0.9
+
 BIN_GRANULARITY = 2
+
+AUX_LINKS_DEFAULT = {}
 
 
 @dataclass
@@ -56,12 +61,13 @@ def lab_token(
     trait_name: str,
     base_pct: int,
     age: int,
+    aux_effect: float = 0.0,
 ) -> str:
 
     slope = LAB_AGE_SLOPE * (base_pct / 100) ** GAMMA
     delta_age = age - AGE_REF
 
-    level = slope * delta_age + base_pct
+    level = slope * delta_age + base_pct + aux_effect
 
     cur_noise = np.random.normal(0, LAB_NOISE_SD)
     level += cur_noise
@@ -75,22 +81,40 @@ def diagnosis_token(
     trait_name: str,
     risk_pct: int,
     already_dx: bool,
+    aux_effect: float = 0.0,
 ) -> tuple[str | None, bool]:
     if already_dx:
         token = f"DX_{trait_name}" if np.random.rand() < DX_PERSIST_P else None
         return token, True
-    if np.random.rand() < (risk_pct / 100) ** 2:
+    risk_adj = np.clip(risk_pct + aux_effect, 1, 100)
+    if np.random.rand() < DX_SCALING_FACTOR * (risk_adj / 100) ** 2:
         return f"DX_{trait_name}", True
     return None, False
+
+
+def aux_effect_for(
+    trait_name: str,
+    aux_links: dict[str, dict[str, float]],
+    individual_info: dict,
+) -> float:
+    effect = 0.0
+    for aux_name, weight in aux_links.get(trait_name, {}).items():
+        pct = individual_info[aux_name]
+        effect += weight * (pct - 50) / 50
+    return effect
 
 
 def build_sequence(
     individual_info: dict,
     target_traits: list[Trait],
+    aux_links: dict[str, dict[str, float]] | None = None,
     replicates: int = 10,
-    min_visits: int = 3,
-    max_visits: int = 7,
+    min_visits: int = 4,
+    max_visits: int = 8,
 ) -> list[str]:
+    if aux_links is None:
+        aux_links = {}
+
     visits_this_individual = []
 
     if_ = individual_info
@@ -116,6 +140,11 @@ def build_sequence(
                         trait_name=t.name,
                         base_pct=if_[t.name],
                         age=age,
+                        aux_effect=aux_effect_for(
+                            trait_name=t.name,
+                            aux_links=aux_links,
+                            individual_info=if_,
+                        ),
                     )
                 elif t.type == "cat":
                     already_diagnosed = t.name in diagnosis_track
@@ -123,6 +152,11 @@ def build_sequence(
                         trait_name=t.name,
                         risk_pct=if_[t.name],
                         already_dx=already_diagnosed,
+                        aux_effect=aux_effect_for(
+                            trait_name=t.name,
+                            aux_links=aux_links,
+                            individual_info=if_,
+                        ),
                     )
 
                     if is_positive:
@@ -154,7 +188,11 @@ def build_traits(con_traits: list[str], cat_traits: list[str]) -> list[Trait]:
     return all_traits
 
 
-def build_sequences_df(df: pd.DataFrame, target_traits: list[Trait]) -> pd.DataFrame:
+def build_sequences_df(
+    df: pd.DataFrame,
+    target_traits: list[Trait],
+    aux_links: dict[str, dict[str, float]] | None = None,
+) -> pd.DataFrame:
     all_sequences = []
     for individual_row in df.itertuples():
         row_dict = individual_row._asdict()
@@ -164,6 +202,7 @@ def build_sequences_df(df: pd.DataFrame, target_traits: list[Trait]) -> pd.DataF
         individual_sequences = build_sequence(
             individual_info=row_dict,
             target_traits=target_traits,
+            aux_links=aux_links,
             replicates=10,
             min_visits=3,
             max_visits=7,
@@ -264,7 +303,16 @@ def main(
     output_folder: Path,
     con_traits: list[str],
     cat_traits: list[str],
+    aux_links: dict[str, dict[str, float]] | None = None,
 ):
+    if aux_links is None:
+        aux_links = AUX_LINKS_DEFAULT
+
+    for driven_trait in aux_links:
+        if driven_trait not in con_traits and driven_trait not in cat_traits:
+            raise ValueError(
+                f"aux_links trait {driven_trait!r} is not among con_traits or cat_traits"
+            )
 
     target_traits = build_traits(con_traits=con_traits, cat_traits=cat_traits)
 
@@ -281,7 +329,19 @@ def main(
     df_labels.index = df_labels.index.astype(str)
     df_joined = pd.merge(left=df_percentiles, right=df_labels, on="ID")
 
-    df_sequences = build_sequences_df(df=df_joined, target_traits=target_traits)
+    aux_biomarkers = sorted({aux for links in aux_links.values() for aux in links})
+    if aux_biomarkers:
+        aux_traits = build_traits(con_traits=aux_biomarkers, cat_traits=[])
+        _verify_traits(target_folder=target_folder, target_traits=aux_traits)
+        df_aux = gather_predictions(preds_folder=target_folder, keep_list=aux_traits)
+        df_aux_pct = convert_df_to_percentiles(df=df_aux)
+        df_joined = df_joined.join(df_aux_pct)
+
+    df_sequences = build_sequences_df(
+        df=df_joined,
+        target_traits=target_traits,
+        aux_links=aux_links,
+    )
 
     split_dfs = split_ids(df_grs_and_real=df_joined, df_sequences=df_sequences)
 

@@ -13,7 +13,7 @@
 
 <rect x="330" y="40" width="250" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
 <text x="455" y="62" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Biomarker inputs</text>
-<text x="455" y="80" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">21 features</text>
+<text x="455" y="80" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">23 features</text>
 
 <line x1="175" y1="98" x2="175" y2="118" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
 

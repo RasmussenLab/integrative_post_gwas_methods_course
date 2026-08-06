@@ -9,6 +9,8 @@ input_type_info:
   - Glycated_haemoglobin_HbA1c
   - Alanine_aminotransferase
   - Aspartate_aminotransferase
+  - Apolipoprotein_A
+  - Apolipoprotein_B_BIOCH
   - Gamma_glutamyltransferase
   - Alkaline_phosphatase
   - Albumin_BIOCH
@@ -25,5 +27,6 @@ input_type_info:
   - IGF_1
   - Vitamin_D
   - Lipoprotein_A
+  modality_dropout_rate: 0.0
 model_config:
   model_type: tabular

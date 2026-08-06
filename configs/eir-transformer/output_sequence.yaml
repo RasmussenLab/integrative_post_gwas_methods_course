@@ -9,7 +9,7 @@ model_config:
     num_layers: 4
 
 output_type_info:
-        sampling_strategy_if_longer: "uniform"
-        max_length: 64
-        split_on: " "
-        min_freq: 10
+    sampling_strategy_if_longer: "uniform"
+    max_length: 64
+    split_on: " "
+    min_freq: 10
