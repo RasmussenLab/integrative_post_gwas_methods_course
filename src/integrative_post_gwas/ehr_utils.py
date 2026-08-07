@@ -180,6 +180,33 @@ def plot_trajectory_comparison(
     plt.show()
 
 
+def trajectory_mae(
+    real_seq: str,
+    generated: dict[str, str | list[str]],
+    labs: list[str],
+) -> pd.DataFrame:
+    parsed_real = parse_sequence(sequence=real_seq)
+
+    result = {}
+    for label, seqs in generated.items():
+        reps = [
+            parse_sequence(sequence=s)
+            for s in (seqs if isinstance(seqs, list) else [seqs])
+        ]
+        maes = {}
+        for lab in labs:
+            agg = aggregate_replicates(reps=reps, lab=lab)
+            if agg is None or lab not in parsed_real.columns:
+                maes[lab] = float("nan")
+                continue
+            real_vals = parsed_real[lab]
+            common = agg.index.intersection(real_vals.index)
+            maes[lab] = (agg.loc[common, "mean"] - real_vals.loc[common]).abs().mean()
+        result[label] = maes
+
+    return pd.DataFrame(result)
+
+
 def set_manual_inputs(
     prompts: str | list[str],
     config_path: str = "../configs/eir-transformer/output_sequence_test.yaml",
@@ -336,12 +363,15 @@ def generate_from_prompt(
     output_folder: str,
     input_config: str | None = None,
     tabular: dict | None = None,
-    replicates: int = 1,
+    n_samples: int = 1,
 ) -> str | list[str]:
-    prompts = prompt if replicates == 1 else [prompt] * replicates
+
+    prompts = prompt if n_samples == 1 else [prompt] * n_samples
+
     tab = tabular
-    if replicates > 1 and tabular is not None:
-        tab = [tabular] * replicates
+    if n_samples > 1 and tabular is not None:
+        tab = [tabular] * n_samples
+        
     set_manual_inputs(prompts=prompts, config_path=output_config, tabular=tab)
 
     matches = sorted(glob.glob(model_glob))
@@ -372,8 +402,8 @@ def generate_from_prompt(
         print(result.stderr)
         raise RuntimeError(f"eirpredict failed (exit code {result.returncode})")
 
-    if replicates == 1:
+    if n_samples == 1:
         return read_generated_sequence(output_folder=output_folder)
+
     return read_generated_sequences(output_folder=output_folder)
 
-    return read_generated_sequence(output_folder=output_folder)

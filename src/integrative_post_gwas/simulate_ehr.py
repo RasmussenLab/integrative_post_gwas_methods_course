@@ -109,8 +109,8 @@ def build_sequence(
     target_traits: list[Trait],
     aux_links: dict[str, dict[str, float]] | None = None,
     replicates: int = 10,
-    min_visits: int = 4,
-    max_visits: int = 8,
+    min_visits: int = 3,
+    max_visits: int = 7,
 ) -> list[str]:
     if aux_links is None:
         aux_links = {}
