@@ -231,3 +231,6 @@ runs/
 # MacOS
 
 .DS_Store
+
+# Keep the logs that come with the pre-trained models
+!pretrained/**/*.log

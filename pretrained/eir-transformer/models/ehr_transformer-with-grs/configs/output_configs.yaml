@@ -1,0 +1,37 @@
+- model_config:
+    embedding_dim: 64
+    model_init_config:
+      dim_feedforward: auto
+      dropout: 0.1
+      num_heads: 8
+      num_layers: 4
+    model_type: sequence
+    position: encode
+    position_dropout: 0.1
+  output_info:
+    output_name: ehr
+    output_source: ../reference_data/eir-transformer/df_ehr.csv
+    output_type: sequence
+  output_type_info:
+    adaptive_tokenizer_max_vocab_size: null
+    max_length: 64
+    min_freq: 10
+    sampling_strategy_if_longer: uniform
+    sequence_operation: autoregressive
+    split_on: ' '
+    tokenizer: null
+    tokenizer_language: null
+    vocab_file: null
+  sampling_config:
+    frequency_penalty: 0.1
+    frequency_penalty_max_window: 128
+    generated_sequence_length: 64
+    manual_inputs: []
+    n_eval_inputs: 10
+    repetition_penalty: 1.1
+    repetition_penalty_max_window: 64
+    tau: 0.95
+    temperature: 0.7
+    top_k: 20
+    top_p: 0.9
+  tensor_broker_config: null

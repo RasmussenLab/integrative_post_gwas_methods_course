@@ -38,7 +38,7 @@ sampling_config:
       Cystatin_C: 0.8391408
       Urea: 5.454428
       IGF_1: 20.052748
-      Vitamin_D: 49.109905
+      Vitamin_D: 49.1099
       Lipoprotein_A: 40.112858
   - ehr: SEX_2 [VISIT_START] AGE_58
     biomarker_inputs: *id001

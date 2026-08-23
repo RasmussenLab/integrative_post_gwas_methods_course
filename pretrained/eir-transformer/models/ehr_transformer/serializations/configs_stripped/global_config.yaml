@@ -1,0 +1,78 @@
+accelerator:
+  devices: auto
+  hardware: auto
+  num_nodes: 1
+  precision: 32-true
+  strategy: auto
+adversarial_training: null
+attribution_analysis:
+  attribution_background_samples: 256
+  attributions_every_sample_factor: 1
+  compute_attributions: false
+  max_attributions_per_class: null
+basic_experiment:
+  batch_size: 64
+  dataloader_workers: 0
+  device: mps:0
+  manual_valid_ids_file: null
+  memory_dataset: true
+  n_epochs: 20
+  output_folder: null
+  valid_size: 0.1
+data_preparation:
+  streaming_batch_size: null
+  streaming_setup_samples: 10000
+evaluation_checkpoint:
+  checkpoint_interval: 500
+  n_saved_models: 1
+  sample_interval: 500
+  saved_result_detail_level: 5
+latent_sampling:
+  batch_size_for_saving: 1000
+  layers_to_sample:
+  - output_modules.ehr.final_norm
+  max_samples_for_viz: 10000
+lr_schedule:
+  lr_plateau_factor: 0.2
+  lr_plateau_patience: 10
+  lr_schedule: plateau
+  plot_lr_schedule: false
+  warmup_steps: auto
+metrics:
+  cat_averaging_metrics: null
+  cat_metrics:
+  - mcc
+  - acc
+  - roc-auc-macro
+  - ap-macro
+  con_averaging_metrics: null
+  con_metrics:
+  - r2
+  - pcc
+  - loss
+model:
+  compile_model: false
+  n_iter_before_swa: null
+  pretrained_checkpoint: null
+  strict_pretrained_loading: true
+optimization:
+  b1: 0.9
+  b2: 0.999
+  gradient_accumulation_steps: null
+  gradient_clipping: 1.0
+  gradient_noise: 0.0
+  lr: 0.0006
+  lr_lb: 0.0
+  optimizer: adamw
+  wd: 0.0001
+training_control:
+  early_stopping_buffer: null
+  early_stopping_patience: 10
+  manifold_mixup_layer_groups: null
+  mixing_alpha: 0.0
+  weighted_sampling_columns: null
+visualization_logging:
+  log_level: info
+  no_pbar: false
+  plot_skip_steps: 200
+  save_model_diagram: false

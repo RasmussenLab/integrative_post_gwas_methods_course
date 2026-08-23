@@ -1,0 +1,79 @@
+- input_info:
+    input_name: biomarker_inputs
+    input_source: ../reference_data/eir-transformer/df_grs.csv
+    input_type: tabular
+  input_type_info:
+    input_cat_columns: []
+    input_con_columns:
+    - Cholesterol
+    - LDL_direct
+    - Glycated_haemoglobin_HbA1c
+    - Alanine_aminotransferase
+    - Aspartate_aminotransferase
+    - Apolipoprotein_A
+    - Apolipoprotein_B_BIOCH
+    - Gamma_glutamyltransferase
+    - Alkaline_phosphatase
+    - Albumin_BIOCH
+    - Total_protein
+    - Direct_bilirubin
+    - Total_bilirubin
+    - C_reactive_protein
+    - Urate
+    - Calcium
+    - Phosphate
+    - Creatinine_BIOCH
+    - Cystatin_C
+    - Urea
+    - IGF_1
+    - Vitamin_D
+    - Lipoprotein_A
+    label_parsing_chunk_size: null
+    mixing_subtype: mixup
+    modality_dropout_rate: 0.0
+  interpretation_config: null
+  model_config:
+    model_init_config:
+      drop_prob: 0.0
+      fc_dim: null
+      fc_do: 0.1
+      fc_layer: false
+      l1: 0.0
+      layers:
+      - 0
+    model_type: tabular
+  pretrained_config: null
+  tensor_broker_config: null
+- input_info:
+    input_name: ehr
+    input_source: ../reference_data/eir-transformer/df_ehr.csv
+    input_type: sequence
+  input_type_info:
+    adaptive_tokenizer_max_vocab_size: null
+    max_length: 64
+    min_freq: 10
+    mixing_subtype: mixup
+    modality_dropout_rate: 0.0
+    sampling_strategy_if_longer: uniform
+    split_on: ' '
+    tokenizer: null
+    tokenizer_language: null
+    vocab_file: null
+  interpretation_config: null
+  model_config:
+    embedding_dim: 64
+    freeze_pretrained_model: false
+    masked: false
+    model_init_config:
+      dim_feedforward: auto
+      dropout: 0.1
+      num_heads: 8
+      num_layers: 4
+    model_type: eir-input-sequence-from-linked-output-default
+    pool: null
+    position: encode
+    position_dropout: 0.1
+    pretrained_model: false
+    window_size: 0
+  pretrained_config: null
+  tensor_broker_config: null
