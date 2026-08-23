@@ -12,6 +12,10 @@
     "ghcr.io/va-h/devcontainers-features/uv:1": {}
   },
 
+  "containerEnv": {
+    "UV_CACHE_DIR": "/workspaces/.uv-cache"
+  },
+
   "customizations": {
     "vscode": {
       "settings": {
@@ -24,6 +28,6 @@
     }
   },
 
-  "postCreateCommand": "uv venv && uv sync && uv pip install 'git+https://github.com/arnor-sigurdsson/EIR-auto-GP.git@27928f'",
+  "postCreateCommand": "uv venv && uv sync && uv pip install 'git+https://github.com/arnor-sigurdsson/EIR-auto-GP.git@27928f' && uv cache clean",
   "waitFor": "postCreateCommand"
 }
