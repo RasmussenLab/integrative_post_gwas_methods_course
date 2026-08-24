@@ -19,7 +19,7 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "python.defaultInterpreterPath": ".venv/bin/python"
+        "python.defaultInterpreterPath": "/workspaces/integrative_post_gwas_methods_course/.venv/bin/python"
       },
       "extensions": [
         "ms-python.python",
