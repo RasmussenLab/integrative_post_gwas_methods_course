@@ -160,6 +160,9 @@ def plot_trajectory_comparison(
             agg = aggregate_replicates(reps=reps, lab=lab)
             if agg is None:
                 continue
+            agg = agg[agg["age"] <= parsed_real["age"].max()]
+            if agg.empty:
+                continue
             se = (agg["std"] / agg["n"] ** 0.5).fillna(0)
             ax.plot(
                 agg["age"], agg["mean"], color=color, ls="--", marker="s", label=label
