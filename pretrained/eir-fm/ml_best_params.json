@@ -1,0 +1,235 @@
+{
+  "selected_grs": [
+    "G20",
+    "H40",
+    "I25",
+    "I65",
+    "I71",
+    "Lipoprotein_A",
+    "Phospholipids_in_IDL"
+  ],
+  "results": [
+    {
+      "model": "LogisticRegression",
+      "scenario": "CAD GRS",
+      "auc": 0.6311298213676185,
+      "params": {
+        "model__C": 0.0745934328572655,
+        "model__l1_ratio": 0.9507143064099162
+      }
+    },
+    {
+      "model": "LogisticRegression",
+      "scenario": "all GRSs",
+      "auc": 0.6320400500625782,
+      "params": {
+        "model__C": 0.03334792728637585,
+        "model__l1_ratio": 0.09767211400638387
+      }
+    },
+    {
+      "model": "LogisticRegression",
+      "scenario": "Covs",
+      "auc": 0.8153089088633519,
+      "params": {
+        "model__C": 0.006026889128682512,
+        "model__l1_ratio": 0.15599452033620265
+      }
+    },
+    {
+      "model": "LogisticRegression",
+      "scenario": "Covs + CAD GRS",
+      "auc": 0.8263169871430198,
+      "params": {
+        "model__C": 0.03334792728637585,
+        "model__l1_ratio": 0.09767211400638387
+      }
+    },
+    {
+      "model": "LogisticRegression",
+      "scenario": "Covs + all GRSs",
+      "auc": 0.8206280577995221,
+      "params": {
+        "model__C": 0.03334792728637585,
+        "model__l1_ratio": 0.09767211400638387
+      }
+    },
+    {
+      "model": "LogisticRegression",
+      "scenario": "Covs + all but CAD GRS",
+      "auc": 0.814028899761065,
+      "params": {
+        "model__C": 0.03334792728637585,
+        "model__l1_ratio": 0.09767211400638387
+      }
+    },
+    {
+      "model": "RandomForest",
+      "scenario": "CAD GRS",
+      "auc": 0.5990158152235749,
+      "params": {
+        "max_depth": 5,
+        "max_features": 0.5,
+        "min_samples_leaf": 5,
+        "min_samples_split": 4,
+        "n_estimators": 204
+      }
+    },
+    {
+      "model": "RandomForest",
+      "scenario": "all GRSs",
+      "auc": 0.6364205256570714,
+      "params": {
+        "max_depth": 5,
+        "max_features": "sqrt",
+        "min_samples_leaf": 4,
+        "min_samples_split": 6,
+        "n_estimators": 606
+      }
+    },
+    {
+      "model": "RandomForest",
+      "scenario": "Covs",
+      "auc": 0.7910740698600524,
+      "params": {
+        "max_depth": 5,
+        "max_features": 0.5,
+        "min_samples_leaf": 2,
+        "min_samples_split": 5,
+        "n_estimators": 515
+      }
+    },
+    {
+      "model": "RandomForest",
+      "scenario": "Covs + CAD GRS",
+      "auc": 0.8456877915576289,
+      "params": {
+        "max_depth": 5,
+        "max_features": 0.5,
+        "min_samples_leaf": 2,
+        "min_samples_split": 5,
+        "n_estimators": 515
+      }
+    },
+    {
+      "model": "RandomForest",
+      "scenario": "Covs + all GRSs",
+      "auc": 0.8417339856638981,
+      "params": {
+        "max_depth": 5,
+        "max_features": 0.5,
+        "min_samples_leaf": 5,
+        "min_samples_split": 4,
+        "n_estimators": 204
+      }
+    },
+    {
+      "model": "RandomForest",
+      "scenario": "Covs + all but CAD GRS",
+      "auc": 0.8188076004096029,
+      "params": {
+        "max_depth": 5,
+        "max_features": 0.5,
+        "min_samples_leaf": 2,
+        "min_samples_split": 5,
+        "n_estimators": 515
+      }
+    },
+    {
+      "model": "XGBoost",
+      "scenario": "CAD GRS",
+      "auc": 0.624502218682444,
+      "params": {
+        "colsample_bytree": 0.7425191352307899,
+        "gamma": 4.53414220772877,
+        "learning_rate": 0.004228481828788672,
+        "max_depth": 5,
+        "min_child_weight": 9,
+        "n_estimators": 827,
+        "reg_alpha": 0.025720264197882346,
+        "reg_lambda": 0.016562467254117346,
+        "subsample": 0.6658623412571767
+      }
+    },
+    {
+      "model": "XGBoost",
+      "scenario": "all GRSs",
+      "auc": 0.6195244055068836,
+      "params": {
+        "colsample_bytree": 0.7425191352307899,
+        "gamma": 4.53414220772877,
+        "learning_rate": 0.004228481828788672,
+        "max_depth": 5,
+        "min_child_weight": 9,
+        "n_estimators": 827,
+        "reg_alpha": 0.025720264197882346,
+        "reg_lambda": 0.016562467254117346,
+        "subsample": 0.6658623412571767
+      }
+    },
+    {
+      "model": "XGBoost",
+      "scenario": "Covs",
+      "auc": 0.7834793491864831,
+      "params": {
+        "colsample_bytree": 0.8721230154351118,
+        "gamma": 2.2524962598477147,
+        "learning_rate": 0.0010728106434030567,
+        "max_depth": 3,
+        "min_child_weight": 2,
+        "n_estimators": 976,
+        "reg_alpha": 0.001158417231054399,
+        "reg_lambda": 0.008386394780402562,
+        "subsample": 0.6964101864104046
+      }
+    },
+    {
+      "model": "XGBoost",
+      "scenario": "Covs + CAD GRS",
+      "auc": 0.8433268858800775,
+      "params": {
+        "colsample_bytree": 0.987032220608099,
+        "gamma": 2.739859416240437,
+        "learning_rate": 0.009427994935144767,
+        "max_depth": 5,
+        "min_child_weight": 1,
+        "n_estimators": 298,
+        "reg_alpha": 0.04471679901231309,
+        "reg_lambda": 0.030766092622690297,
+        "subsample": 0.9105651842967988
+      }
+    },
+    {
+      "model": "XGBoost",
+      "scenario": "Covs + all GRSs",
+      "auc": 0.841904653544203,
+      "params": {
+        "colsample_bytree": 0.987032220608099,
+        "gamma": 2.739859416240437,
+        "learning_rate": 0.009427994935144767,
+        "max_depth": 5,
+        "min_child_weight": 1,
+        "n_estimators": 298,
+        "reg_alpha": 0.04471679901231309,
+        "reg_lambda": 0.030766092622690297,
+        "subsample": 0.9105651842967988
+      }
+    },
+    {
+      "model": "XGBoost",
+      "scenario": "Covs + all but CAD GRS",
+      "auc": 0.8244396404596656,
+      "params": {
+        "colsample_bytree": 0.8721230154351118,
+        "gamma": 2.2524962598477147,
+        "learning_rate": 0.0010728106434030567,
+        "max_depth": 3,
+        "min_child_weight": 2,
+        "n_estimators": 976,
+        "reg_alpha": 0.001158417231054399,
+        "reg_lambda": 0.008386394780402562,
+        "subsample": 0.6964101864104046
+      }
+    }
+  ]
+}
