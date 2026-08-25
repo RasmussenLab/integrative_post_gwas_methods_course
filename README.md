@@ -17,20 +17,20 @@ this guide before we begin:
 
 > **Note**: the timings are a guide, and may shift a bit depending on how the sessions go.
 
-| Time | Topic | Teacher | Notebook |
-|---|---|---|---|
-| 09:00-09:15 | Recap of Day 2 | Ditte | |
-| 09:15-10:00 | Introduction to machine learning and PRS | Simon W | |
-| 10:00-10:20 | Introduction to EIR-FM | Simon R | |
-| 10:20-10:40 | *Break* | | |
-| 10:40-11:40 | Application of EIR-FM | Jiyeon, Simon(s), Magnus | [eir-fm-combined.ipynb](notebooks/eir-fm-combined.ipynb) |
-| 11:40-12:00 | Discussion (pros and cons of linear and non-linear methods) | Jiyeon, Simon(s), Magnus | |
-| 12:00-13:00 | *Lunch break* | | |
-| 13:00-13:45 | Introduction of EHR modality, transformers and disease trajectories | Magnus | |
-| 13:45-14:05 | Application of EIR-Transformer | Jiyeon, Simon(s), Magnus | [eir-intro.ipynb](notebooks/eir-intro.ipynb) |
-| 14:05-14:25 | *Break* | | |
-| 14:25-15:25 | Application of EIR-Transformer (continued) | Jiyeon, Simon(s), Magnus | [eir-transformer.ipynb](notebooks/eir-transformer.ipynb) |
-| 15:25-16:00 | Group activity and discussion (which element from the course can you use in your project) | Simon R | |
+| Time | Topic | Teacher | Notebook | Slides |
+|---|---|---|---|---|
+| 09:00-09:15 | Recap of Day 2 | Ditte | | |
+| 09:15-10:00 | Introduction to machine learning and PRS | Simon W | | [PDF](slides/2026_08_25_intro_to_machine_learning_and_prs.pdf) |
+| 10:00-10:20 | Introduction to EIR-FM | Simon R | | |
+| 10:20-10:40 | *Break* | | | |
+| 10:40-11:40 | Application of EIR-FM | Jiyeon, Simon(s), Magnus | [eir-fm-combined.ipynb](notebooks/eir-fm-combined.ipynb) | [PDF](slides/01_eir-fm-combined_slides.pdf) |
+| 11:40-12:00 | Discussion (pros and cons of linear and non-linear methods) | Jiyeon, Simon(s), Magnus | | |
+| 12:00-13:00 | *Lunch break* | | | |
+| 13:00-13:45 | Introduction of EHR modality, transformers and disease trajectories | Magnus | | |
+| 13:45-14:05 | EIR and EIR-transformer | Jiyeon, Simon(s), Magnus | [eir-intro.ipynb](notebooks/eir-intro.ipynb) | [PDF](slides/02_eir-intro_slides.pdf) |
+| 14:05-14:25 | *Break* | | | |
+| 14:25-15:25 | Application of EIR-Transformer | Jiyeon, Simon(s), Magnus | [eir-transformer.ipynb](notebooks/eir-transformer.ipynb) | [PDF](slides/03_eir-transformer_slides.pdf) |
+| 15:25-16:00 | Group activity and discussion (which element from the course can you use in your project) | Simon R | | |
 
 ## Teachers
 
