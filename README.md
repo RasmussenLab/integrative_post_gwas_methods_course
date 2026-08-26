@@ -21,15 +21,15 @@ this guide before we begin:
 |---|---|---|---|---|
 | 09:00-09:15 | Recap of Day 2 | Ditte | | |
 | 09:15-10:00 | Introduction to machine learning and PRS | Simon W | | [PDF](slides/2026_08_25_intro_to_machine_learning_and_prs.pdf) |
-| 10:00-10:20 | Introduction to EIR-FM | Simon R | | |
+| 10:00-10:20 | Introduction to EIR-FM | Simon R | | [PPTX](slides/GWAS%20course%20EIR-FM%20introduction.pptx) |
 | 10:20-10:40 | *Break* | | | |
-| 10:40-11:40 | Application of EIR-FM | Jiyeon, Simon(s), Magnus | [eir-fm-combined.ipynb](notebooks/eir-fm-combined.ipynb) | [PDF](slides/01_eir-fm-combined_slides.pdf) |
+| 10:40-11:40 | Application of EIR-FM | Jiyeon, Simon(s), Magnus | [01_eir-fm-combined.ipynb](notebooks/01_eir-fm-combined.ipynb) | [PDF](slides/01_eir-fm-combined_slides.pdf) |
 | 11:40-12:00 | Discussion (pros and cons of linear and non-linear methods) | Jiyeon, Simon(s), Magnus | | |
 | 12:00-13:00 | *Lunch break* | | | |
-| 13:00-13:45 | Introduction of EHR modality, transformers and disease trajectories | Magnus | | |
-| 13:45-14:05 | EIR and EIR-transformer | Jiyeon, Simon(s), Magnus | [eir-intro.ipynb](notebooks/eir-intro.ipynb) | [PDF](slides/02_eir-intro_slides.pdf) |
+| 13:00-13:45 | Introduction of EHR modality, transformers and disease trajectories | Simon R, Magnus | | [PPTX](slides/EHR%20transformer%20presentation%2020260825.pptx) |
+| 13:45-14:05 | EIR and EIR-transformer | Jiyeon, Simon(s), Magnus | [02_eir-intro.ipynb](notebooks/02_eir-intro.ipynb) | [PDF](slides/02_eir-intro_slides.pdf) |
 | 14:05-14:25 | *Break* | | | |
-| 14:25-15:25 | Application of EIR-Transformer | Jiyeon, Simon(s), Magnus | [eir-transformer.ipynb](notebooks/eir-transformer.ipynb) | [PDF](slides/03_eir-transformer_slides.pdf) |
+| 14:25-15:25 | Application of EIR-Transformer | Jiyeon, Simon(s), Magnus | [03_eir-transformer.ipynb](notebooks/03_eir-transformer.ipynb) | [PDF](slides/03_eir-transformer_slides.pdf) |
 | 15:25-16:00 | Group activity and discussion (which element from the course can you use in your project) | Simon R | | |
 
 ## Teachers
@@ -46,12 +46,12 @@ this guide before we begin:
 
 Take these in order:
 
-1. [eir-fm-combined.ipynb](notebooks/eir-fm-combined.ipynb) - polygenic scores, then a
+1. [01_eir-fm-combined.ipynb](notebooks/01_eir-fm-combined.ipynb) - polygenic scores, then a
    pre-trained genomic foundation model applied to the PennCATH cohort to predict ~300
    phenotypes (GRS; genomic representation scores) per individual.
-2. [eir-intro.ipynb](notebooks/eir-intro.ipynb) - the EIR configuration files and the
+2. [02_eir-intro.ipynb](notebooks/02_eir-intro.ipynb) - the EIR configuration files and the
    `eirtrain` and `eirpredict` commands.
-3. [eir-transformer.ipynb](notebooks/eir-transformer.ipynb) - a GPT style transformer
+3. [03_eir-transformer.ipynb](notebooks/03_eir-transformer.ipynb) - a GPT style transformer
    trained on simulated EHR trajectories, and whether adding the GRS values from the
    first notebook as an extra input makes it any better.
 
